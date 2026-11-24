@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lazy Kingdom 懶惰王國：美夢保衛戰</title>
+  <link rel="stylesheet" href="font/Cubic_11.woff">
+  <link rel="shortcut icon" href="images/shortcut-icon.png" type="image/png">
+  <meta name="description" content="在「國際懶惰日」這天，一切喧囂都該停止，這是《懶惰王國》的核心精神。透過滑鼠與手勢操作對抗噪音怪物，體驗動手驅敵的奇幻世界。這不只是遊戲，更是生活提案。">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <audio id="bgm" src="src/bgm-creepy.mp3" loop></audio>
+  <div id="orientation-message">
+    <div>請將裝置橫轉遊玩</div>
+  </div>
+
+  <div id="game-container">
+    <div id="playground">
+      <!-- 前導影片區域 -->
+      <div id="intro-container">
+        <div id="video-loading">
+          <div class="loading-spinner"></div>
+        </div>
+        <video id="intro-video" playsinline webkit-playsinline preload="auto">
+          <source src="src/intro.mp4" type="video/mp4">
+        </video>
+        <div id="play-button">
+          <div class="play-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744 742">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: #5f5f5f;
+                  }
+
+                  .cls-2 {
+                    fill: #fff;
+                  }
+
+                  .cls-3 {
+                    fill: #222;
+                  }
+
+                  .cls-4 {
+                    fill: #f9ca24;
+                  }
+                </style>
+              </defs>
+              <path class="cls-1"
+                d="M160,106c34.17-.06,68.37,0,102.55.05l3.45-1.55v-51.5h212v51.5l3.45,1.55c34.18-.04,68.38-.12,102.55-.05.05,14.81-1.73,35.59-.05,49.55.13,1.07-.04,2.3.98,3.02,17.33.84,34.73.38,52.06.44l.44,105.06c.71,1.02,1.94.86,3.02.98,14.26,1.72,35.42-.11,50.55-.05.03,68.63-2.36,137.81-.28,206.54.05,1.6.21,4.37-1.22,5.46h-51l-1.5,1.5v104.5h-53v53h-104.5l-1.5,1.5v51.5h-212v-51.5l-3.45-1.55c-34.18.04-68.38.12-102.55.05-.03-17.65.02-35.35,0-53h-52.5l-1.5-1.5v-104.5c-17.65-.02-35.35.03-53,0-.07-70.65-.08-141.35,0-212,17.65-.03,35.35.02,53,0v-98.5c0-1.64.97-5.26,1-7.5,17.33-.06,34.74.41,52.06-.44,1.02-.71.86-1.94.98-3.02,1.68-13.96-.09-34.74-.05-49.55ZM363,238v-51.5l-1.5-1.5h-51.5v372h53v-53h53v-53h51.5l1.5-1.5v-51.5h50.5c.61,0,1.53-.8,2.5,0v-54h-53v-53h-53v-53h-53Z" />
+              <path class="cls-2"
+                d="M584,106c-.05-17.65.04-35.35,0-53h-104.5l-1.5-1.5V0h-212v51.5l-1.5,1.5h-104.5c-.04,17.65.05,35.35,0,53-17.99.03-36.02-.03-54,0,1.44,12.71,1.2,25.7,1.05,38.55-.05,4.79,0,9.88-.05,14.45-15.09.05-36.33-1.77-50.55-.05-1.11.14-2.25-.03-3.04,1.02-.77,34.93-.37,70.05-.41,105.03-17.65.03-35.35-.02-53,0v212c17.65.02,35.35-.03,53,0,.03,35.32-.02,70.68,0,106h52.5c.55,0,1.62,1.7,1.53,2.55l-1.03,50.44c17.98.04,36.02-.03,54,0,.03,17.65-.02,35.35,0,53h104.5l1.5,1.5v51l212,.5v-51.5l1.5-1.5h104.5v-51.5l1.5-1.5h51.5v-51.5l1.5-1.5h51.5v-104.5l1.5-1.5h52.5v-212c-17.65-.06-35.35.07-53,0,0-.66-1.04-2.54-1.04-4.43-.02-33.52-.35-67.19.63-100.61-.78-1.04-1.93-.88-3.04-1.01-14.18-1.73-35.48.1-50.55.05v-53.01c-17.65-.02-35.35.04-53,0Z" />
+              <path class="cls-4"
+                d="M160,106c34.17-.06,68.37,0,102.55.05l3.45-1.55v-51.5h212v51.5l3.45,1.55c34.18-.04,68.38-.12,102.55-.05.05,14.81-1.73,35.59-.05,49.55.13,1.07-.04,2.3.98,3.02,17.33.84,34.73.38,52.06.44l.44,105.06c.71,1.02,1.94.86,3.02.98,14.26,1.72,35.42-.11,50.55-.05.03,68.63-2.36,137.81-.28,206.54.05,1.6.21,4.37-1.22,5.46h-51l-1.5,1.5v104.5h-53v53h-104.5l-1.5,1.5v51.5h-212v-51.5l-3.45-1.55c-34.18.04-68.38.12-102.55.05-.03-17.65.02-35.35,0-53h-52.5l-1.5-1.5v-104.5c-17.65-.02-35.35.03-53,0-.07-70.65-.08-141.35,0-212,17.65-.03,35.35.02,53,0v-98.5c0-1.64.97-5.26,1-7.5,17.33-.06,34.74.41,52.06-.44,1.02-.71.86-1.94.98-3.02,1.68-13.96-.09-34.74-.05-49.55Z" />
+              <g>
+                <path class="cls-3"
+                  d="M160,106c.05-17.65-.04-35.35,0-53h104.5l1.5-1.5V0h212v51.5l1.5,1.5h104.5c.04,17.65-.05,35.35,0,53-34.17-.07-68.37,0-102.55.05l-3.45-1.55v-51.5h-212v51.5l-3.45,1.55c-34.18-.05-68.38-.11-102.55-.05Z" />
+                <path class="cls-3"
+                  d="M160,106c-.05,14.81,1.73,35.59.05,49.55-.13,1.07.04,2.3-.98,3.02-17.33.84-34.73.38-52.06.44.05-4.57,0-9.66.05-14.45.14-12.84.38-25.83-1.05-38.55,17.99-.03,36.02.03,54,0Z" />
+                <path class="cls-3"
+                  d="M584,106c17.65.03,35.35-.02,53.01,0v53.01c-17.34-.06-34.74.41-52.07-.44-1.02-.71-.86-1.94-.98-3.02-1.68-13.96.09-34.74.05-49.55Z" />
+                <path class="cls-3"
+                  d="M107,159c-.03,2.24-1,5.86-1,7.5v98.5c-17.65.02-35.35-.03-53,0,.04-34.98-.36-70.1.41-105.03.79-1.05,1.93-.88,3.04-1.02,14.21-1.72,35.45.1,50.55.05Z" />
+                <path class="cls-3"
+                  d="M691,265c-15.13-.06-36.29,1.77-50.55.05-1.07-.13-2.3.04-3.02-.98l-.44-105.06c15.07.05,36.37-1.78,50.55-.05,1.1.13,2.26-.03,3.04,1.01-.98,33.42-.65,67.09-.63,100.61,0,1.89,1.04,3.76,1.04,4.43Z" />
+                <path class="cls-3"
+                  d="M53,477c17.65.03,35.35-.02,53,0v104.5l1.5,1.5h52.5c.02,17.65-.03,35.35,0,53-17.98-.04-36.02.03-54,0l1.03-50.44c.09-.85-.98-2.55-1.53-2.55h-52.5c-.02-35.32.03-70.68,0-106Z" />
+                <path class="cls-3"
+                  d="M691,265c17.65.07,35.35-.05,53,0v212h-52.5l-1.5,1.5v104.5h-51.5l-1.5,1.5v51.5h-51.5l-1.5,1.5v51.5h-104.5l-1.5,1.5v51.5l-212-.5v-51l-1.5-1.5h-104.5c-.02-17.65.03-35.35,0-53,34.17.07,68.37,0,102.55-.05l3.45,1.55v51.5h212v-51.5l1.5-1.5h104.5v-53h53v-104.5l1.5-1.5h51c1.44-1.09,1.27-3.86,1.22-5.46-2.08-68.73.31-137.92.28-206.54Z" />
+                <path class="cls-3"
+                  d="M53,265c-.08,70.65-.07,141.35,0,212-17.65-.03-35.35.02-53,0v-212c17.65-.02,35.35.03,53,0Z" />
+              </g>
+              <path class="cls-3"
+                d="M363,238h53v53h53v53h53v54c-.97-.8-1.89,0-2.5,0h-50.5v51.5l-1.5,1.5h-51.5v53h-53v53h-53V185h51.5l1.5,1.5v51.5Z" />
+            </svg></div>
+        </div>
+      </div>
+
+      <div id="lives-container" style="display: none;">
+        <img class="life-icon" src="images/life.webp" alt="Life">
+        <img class="life-icon" src="images/life.webp" alt="Life">
+        <img class="life-icon" src="images/life.webp" alt="Life">
+        <img class="life-icon" src="images/life.webp" alt="Life">
+        <img class="life-icon" src="images/life.webp" alt="Life">
+      </div>
+
+      <div id="timer" style="display: none;">00:00:00</div>
+      <div id="how-to-play">
+        <p>梅夢：來吧，畫出對應的符咒打敗怪物！</p>
+      </div>
+      <div id="zone"></div>
+      <div id="npc">
+        <img src="images/king-body.webp" alt="King">
+      </div>
+      <div id="npc-head">
+        <img src="images/king-head.webp" alt="King">
+      </div>
+      <div id="bubble">
+        <img src="images/bubble.webp" alt="bubble">
+      </div>
+
+      <div id="knight-light">
+        <img src="images/knight-light.webp" alt="Light">
+      </div>
+      <div id="knight-wand">
+        <img src="images/knight-wand.webp" alt="Wand">
+      </div>
+      <div id="knight">
+        <img src="images/knight.webp" alt="Knight">
+      </div>
+
+      <canvas id="gameCanvas"></canvas>
+
+      <div id="game-start">
+        <div id="start-desc">施展「ＺＯＵ」魔法<br>擊退敵人吧 !!!</div>
+        <button id="start-button">START</button>
+      </div>
+
+      <div id="game-over-modal" class="modal">
+        <video id="end-video" playsinline webkit-playsinline preload="auto">
+          <source src="" type="video/mp4">
+        </video>
+        <div class="modal-content">
+          <h2 id="ending-title">THE END</h2>
+          <div id="final-time"></div>
+          <button id="restart-button">PLAY AGAIN</button>
+
+          <div id="avatar-container">
+            <img class="avatar" src="images/avatar-gina.webp" alt="Gina" title="Gina">
+            <img class="avatar" src="images/avatar-jen.webp" alt="Jen" title="Jen">
+            <img class="avatar" src="images/avatar-ann.webp" alt="Ann" title="Ann">
+            <img class="avatar" src="images/avatar-candy.webp" alt="Candy" title="Candy">
+            <img class="avatar" src="images/avatar-syuan.webp" alt="Syuan" title="Syuan">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="recognizer.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
